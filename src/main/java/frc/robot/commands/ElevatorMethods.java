@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.SubsystemCommands.ElevatorCommands;
 import frc.robot.subsystems.Elevator;
 
 public class ElevatorMethods extends Command {
@@ -18,10 +19,9 @@ public class ElevatorMethods extends Command {
 
     @Override
     public void execute() {
-        // Move Elevator
-
-        double climberSpeed = _joystick.getRawAxis(CommandConstants.AxisRightTrigger);
-        _elevator.move(climberSpeed);
+        double speed = _joystick.getRawAxis(CommandConstants.AxisRightStickY);
+        ElevatorCommands elevatorCommands = new ElevatorCommands(_elevator, speed);
+        elevatorCommands.execute();
     }
 }
 

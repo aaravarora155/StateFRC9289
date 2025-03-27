@@ -5,28 +5,28 @@ import frc.robot.subsystems.Elevator;
 
 public class ElevatorCommands extends Command {
     //Define Motor Attributes
-    Elevator climberMotors;
+    Elevator elevatorMotors;
     double power;
     String motor;
 
    public ElevatorCommands(Elevator _elevatorMotor, double speed)
    {
         //Construct Attributes
-        climberMotors = _elevatorMotor;
+        elevatorMotors = _elevatorMotor;
         power = speed;
-        addRequirements(climberMotors);
+        addRequirements(elevatorMotors);
    }
 
     @Override
     public void execute() {
         //Move Elevator
-        climberMotors.move(power);
+        elevatorMotors.move(power);
     }
 
     @Override
     public void end(boolean interrupted) {
         //Stop Elevator
-        climberMotors.stop();
+        elevatorMotors.stop();
     }
 
     @Override
