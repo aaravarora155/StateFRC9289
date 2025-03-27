@@ -32,12 +32,15 @@ public class RobotContainer {
   public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
+  private Elevator elevator = new Elevator();
   //initializating commands to put up as choices
   //old code
   private final Command leftCommand = new LeftStartAuto();
   private final Command middleCommand = new MiddleStartAuto();
   private final Command rightCommand = new RightStartAuto();
   private final Command nonSpeakerCommand = new NonSpeakerStartAuto();
+
+  private final ElevatorMethods elevatorMethods = new ElevatorMethods(elevator, driverController);
   SendableChooser<Command> m_chooser;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -73,6 +76,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     resetHeading_Start.onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
     hang.setDefaultCommand(new HangMethods(hang, driverController));
+    elevator.setDefaultCommand(new ElevatorMethods(elevator, driverController));
   }
 
   /**

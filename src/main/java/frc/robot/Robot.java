@@ -96,6 +96,7 @@ public class Robot extends TimedRobot
     }
     
     // RobotContainer.arm.getEncoder().setPosition(0);
+    CommandScheduler.getInstance().run();
   }
 
   /** This function is called periodically during operator control. */
