@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DrivetrainOld;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -96,9 +95,7 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     }
     
-    RobotContainer.arm.getEncoder().setPosition(0);
-    // drivetrain.resetAllEncoders();
-    // drivetrain.setAllIdleMode(true);
+    // RobotContainer.arm.getEncoder().setPosition(0);
   }
 
   /** This function is called periodically during operator control. */

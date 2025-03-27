@@ -31,14 +31,12 @@ public class RobotContainer {
   public static final Joystick driverController = new Joystick(0);
   public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
-  public static Arm arm = new Arm();
-  private static Roller roller = new Roller();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
   //initializating commands to put up as choices
   //old code
-  private final Command leftCommand = new LeftStartAuto(roller, arm);
-  private final Command middleCommand = new MiddleStartAuto( roller, arm);
-  private final Command rightCommand = new RightStartAuto(roller, arm);
+  private final Command leftCommand = new LeftStartAuto();
+  private final Command middleCommand = new MiddleStartAuto();
+  private final Command rightCommand = new RightStartAuto();
   private final Command nonSpeakerCommand = new NonSpeakerStartAuto();
   SendableChooser<Command> m_chooser;
   
@@ -75,8 +73,6 @@ public class RobotContainer {
     // Configure the trigger bindings
     resetHeading_Start.onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
     hang.setDefaultCommand(new HangMethods(hang, driverController));
-    arm.setDefaultCommand(new ArmMethods(arm, driverController)); 
-    roller.setDefaultCommand(new RollerMethods(roller, driverController, arm));
   }
 
   /**
