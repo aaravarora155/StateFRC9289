@@ -34,8 +34,8 @@ public final class Constants {
     public static final int ELBOW_CLIMBER_ID = 15;
     public static final int WRIST_CLIMBER_ID = 16;
     public static final int HAND_CLIMBER_ID = 17;
-    public static final int ELEVATOR_MOTOR_ID_1;
-    public static final int ELEVATOR_MOTOR_ID_2;
+    public static final int ELEVATOR_MOTOR_ID_1 = 18; //CHANGE
+    public static final int ELEVATOR_MOTOR_ID_2 = 19; // CHANGE
 
   }
   public static class IOConstants {
