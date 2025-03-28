@@ -27,13 +27,14 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class MotorMiscConstants {
     
-    public static final int ROLLER_MOTOR_ID = 10;
     public static final int HANG_MOTOR_ID = 12;
 
-    public static final int SHOULDER_CLIMBER_ID = 14;
-    public static final int ELBOW_CLIMBER_ID = 15;
-    public static final int WRIST_CLIMBER_ID = 16;
-    public static final int HAND_CLIMBER_ID = 17;
+    public static final int PIVOT_ARM_MOTOR_ID = 13;
+    public static final int CLAW_ROT_MOTOR_ID = 14;
+
+    public static final int CLAW_MOTOR_TOP_ID = 15;
+    public static final int CLAW_MOTOR_BOTTOM_ID = 16;
+
     public static final int ELEVATOR_MOTOR_ID_1 = 18; //CHANGE
     public static final int ELEVATOR_MOTOR_ID_2 = 19; // CHANGE
 

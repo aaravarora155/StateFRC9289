@@ -35,7 +35,7 @@ public class Elevator extends SubsystemBase {
             .pid(1.0, 0.0, 0.0);
             
         motor_1.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        motor_1.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        motor_2.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
     public void move(double speed){
