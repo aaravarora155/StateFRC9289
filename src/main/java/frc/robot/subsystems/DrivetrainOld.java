@@ -142,7 +142,7 @@ public class DrivetrainOld extends SubsystemBase {
     poseEstimator.update(getHeadingRotation2d(), getModulePositions());
 
     SmartDashboard.putNumber("Robot Angle", getHeading());
-    SmartDashboard.putString("Angular Speed", new DecimalFormat("#.00").format((-gyro.getRate() / 180)) + "pi rad/s");
+    SmartDashboard.putString("Angular Speed", new DecimalFormat("#.00").format((-gyro.getAngularVelocityZWorld().getValueAsDouble() / 180)) + "pi rad/s");
   }
 
   public void swerveDrive(double frontSpeed, double sideSpeed, double turnSpeed, 
@@ -218,7 +218,7 @@ public class DrivetrainOld extends SubsystemBase {
   }
 
   public double getHeading(){
-    return Math.IEEEremainder(-gyro.getAngle(), 360); //clamp heading between -180 and 180
+    return Math.IEEEremainder(-gyro.getYaw().getValueAsDouble(), 360); //clamp heading between -180 and 180
   }
 
   public Rotation2d getHeadingRotation2d(){

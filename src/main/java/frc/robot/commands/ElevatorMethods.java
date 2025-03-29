@@ -19,9 +19,21 @@ public class ElevatorMethods extends Command {
 
     @Override
     public void execute() {
-        double speed = _joystick.getRawAxis(CommandConstants.AxisRightStickY);
-        ElevatorCommands elevatorCommands = new ElevatorCommands(_elevator, speed);
-        elevatorCommands.execute();
+        if (Elevator.currentHeight == 0.0) { //To prevent crashes, if the current height displacement is only 0, then move the elevator
+            if(_joystick.getRawButton(CommandConstants.ButtonA)){ //L2
+                // Move Elevator Up
+                new ElevatorCommands(_elevator, 0.37);
+            }
+            else if(_joystick.getRawButton(CommandConstants.ButtonB)){ //L3
+                // Move Elevator Down
+                new ElevatorCommands(_elevator, 0.88);
+            }
+        } else {
+            if(_joystick.getRawButton(CommandConstants.ButtonA)){ //L2
+                // Move Elevator Up
+                new ElevatorCommands(_elevator, -Elevator.currentHeight); //move back down to 0.0 height displacement when A is pressed
+            }
+        }
     }
 }
 

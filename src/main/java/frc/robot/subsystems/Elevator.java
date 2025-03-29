@@ -17,6 +17,7 @@ public class Elevator extends SubsystemBase {
     SparkMax motor_1;
     SparkMax motor_2;
     public final double DAMPENING;
+    public static double currentHeight;
     
     public Elevator(){
         DAMPENING = 0.5;
@@ -38,10 +39,20 @@ public class Elevator extends SubsystemBase {
         motor_1.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
-    public void move(double speed){
-        motor_1.set(speed*DAMPENING);
-        motor_2.set(-speed*DAMPENING);
-        SmartDashboard.putNumber("Elevator Power", motor_1.get());
+    public void move(double heightInMeters) {
+        // Convert height in meters to encoder units
+        double targetPosition = heightInMeters * 1000; // Assuming positionConversionFactor = 1000 (meters to encoder units)
+    
+        // Calculate the error in encoder units
+        double error = targetPosition - motor_1.getEncoder().getPosition();
+    
+        // Calculate motor output using proportional control
+        double output = Math.max(-DAMPENING, Math.min(DAMPENING, error * 1.0)); // kP = 1.0
+    
+        // Set motor outputs
+        motor_1.set(-output);
+        motor_2.set(output);
+        currentHeight = heightInMeters;
     }
 
     public void stop(){
@@ -51,7 +62,7 @@ public class Elevator extends SubsystemBase {
 
     @Override
     public void periodic(){
-        SmartDashboard.putNumber("Elevator Speed", motor_1.get());
+        SmartDashboard.putNumber("Elevator Height", currentHeight);
     }
 }
 
