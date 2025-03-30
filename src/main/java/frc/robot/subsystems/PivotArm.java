@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -14,12 +15,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PivotArm extends SubsystemBase {
-    private SparkMax pivotArmMotor = new SparkMax(MotorMiscConstants.PIVOT_ARM_MOTOR_ID, MotorType.kBrushless);
+    private SparkMax pivotArm = new SparkMax(MotorMiscConstants.PIVOT_ARM_MOTOR_ID, MotorType.kBrushless);
+    private RelativeEncoder pivotArmEncoder;
 
     public PivotArm() {
         SparkMaxConfig config = new SparkMaxConfig();
         config
-                .inverted(true)
+                .inverted(false)
                 .idleMode(IdleMode.kBrake);
         config.encoder
                 .positionConversionFactor(1000)
@@ -27,21 +29,28 @@ public class PivotArm extends SubsystemBase {
         config.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
                 .pid(1.0, 0.0, 0.0);
+        pivotArm.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-        pivotArmMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        this.pivotArmEncoder = pivotArm.getEncoder();
+        this.pivotArmEncoder.setPosition(0);
+    }
+
+    public RelativeEncoder getEncoder() {
+        return pivotArmEncoder;
     }
 
     public void move(double speed) {
-        pivotArmMotor.set(speed);
+        pivotArm.set(speed);
     }
 
     public void stop() {
-        pivotArmMotor.set(0);
+        pivotArm.set(0);
     }
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Pivot Arm Power " + MotorMiscConstants.PIVOT_ARM_MOTOR_ID, pivotArmMotor.get());
+        SmartDashboard.putNumber("Pivot Arm Power " + MotorMiscConstants.PIVOT_ARM_MOTOR_ID, pivotArm.get());
+        SmartDashboard.putNumber("Pivot Arm Position " + MotorMiscConstants.PIVOT_ARM_MOTOR_ID, pivotArmEncoder.getPosition());
     }
 }
 // Wolfram121

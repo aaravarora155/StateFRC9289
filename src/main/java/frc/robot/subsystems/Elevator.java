@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -63,7 +64,10 @@ public class Elevator extends SubsystemBase {
     @Override
     public void periodic(){
         SmartDashboard.putNumber("Elevator Height", currentHeight);
+        SmartDashboard.putNumber("Elevator Motor 1 Power", motor_1.get());
+        SmartDashboard.putNumber("Elevator Motor 2 Power", motor_2.get());
+        SmartDashboard.putNumber("Elevator Motor 1 Position", motor_1.getEncoder().getPosition());
+        SmartDashboard.putNumber("Elevator Motor 2 Position", motor_2.getEncoder().getPosition());
     }
 }
-
 //Created by Aditya-2204

@@ -35,8 +35,8 @@ public final class Constants {
     public static final int CLAW_MOTOR_TOP_ID = 15;
     public static final int CLAW_MOTOR_BOTTOM_ID = 16;
 
-    public static final int ELEVATOR_MOTOR_ID_1 = 18; //CHANGE
-    public static final int ELEVATOR_MOTOR_ID_2 = 19; // CHANGE
+    public static final int ELEVATOR_MOTOR_ID_1 = 10; //CHANGE
+    public static final int ELEVATOR_MOTOR_ID_2 = 11; // CHANGE
 
   }
   public static class IOConstants {

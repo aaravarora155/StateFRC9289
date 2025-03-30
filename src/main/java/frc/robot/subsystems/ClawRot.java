@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -14,12 +15,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClawRot extends SubsystemBase {
-    private SparkMax clawRotMotor = new SparkMax(MotorMiscConstants.CLAW_ROT_MOTOR_ID, MotorType.kBrushless);
+    private SparkMax clawRot = new SparkMax(MotorMiscConstants.CLAW_ROT_MOTOR_ID, MotorType.kBrushless);
+    private RelativeEncoder clawRotEncoder;
 
     public ClawRot() {
         SparkMaxConfig config = new SparkMaxConfig();
         config
-                .inverted(true)
+                .inverted(false)
                 .idleMode(IdleMode.kBrake);
         config.encoder
                 .positionConversionFactor(1000)
@@ -27,21 +29,28 @@ public class ClawRot extends SubsystemBase {
         config.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
                 .pid(1.0, 0.0, 0.0);
+        clawRot.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-        clawRotMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        this.clawRotEncoder = clawRot.getEncoder();
+        this.clawRotEncoder.setPosition(0);
+    }
+
+    public RelativeEncoder getEncoder() {
+        return clawRotEncoder;
     }
 
     public void move(double speed) {
-        clawRotMotor.set(speed);
+        clawRot.set(speed);
     }
 
     public void stop() {
-        clawRotMotor.set(0);
+        clawRot.set(0);
     }
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Claw Rot Power" + MotorMiscConstants.CLAW_ROT_MOTOR_ID, clawRotMotor.get());
+        SmartDashboard.putNumber("Claw Rot Power" + MotorMiscConstants.CLAW_ROT_MOTOR_ID, clawRot.get());
+        SmartDashboard.putNumber("Claw Rot Position" + MotorMiscConstants.CLAW_ROT_MOTOR_ID, clawRotEncoder.getPosition());
     }
 }
 //Wolfram121
