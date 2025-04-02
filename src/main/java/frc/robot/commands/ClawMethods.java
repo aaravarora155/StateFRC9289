@@ -21,14 +21,14 @@ public class ClawMethods extends Command {
     public void execute()
     {
         //Set speeds and directions based on button press
-        if(_joystick.getRawAxis(Math.abs(CommandConstants.AxisLeftTrigger)) > CommandConstants.DEADBAND_THRESHOLD)
+        if(_joystick.getRawAxis(Math.abs(CommandConstants.AxisLeftTrigger)) > 0)
         {
-            ClawCommands _command = new ClawCommands(_claw, .5);
+            ClawCommands _command = new ClawCommands(_claw, .1);
             _command.execute();
         }
-        else if(Math.abs(_joystick.getRawAxis(CommandConstants.AxisRightTrigger)) > CommandConstants.DEADBAND_THRESHOLD)
+        else if(Math.abs(_joystick.getRawAxis(CommandConstants.AxisRightTrigger)) > 0)
         {
-            ClawCommands _command = new ClawCommands(_claw, -.5);
+            ClawCommands _command = new ClawCommands(_claw, -.1);
             _command.execute();
         }
         else

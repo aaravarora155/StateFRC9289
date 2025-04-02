@@ -23,20 +23,20 @@ public class HangMethods extends Command {
     public void execute()
     {
         //Set speeds and directions based on button press
-        if(_joystick.getRawButton(CommandConstants.ButtonX))
-        {
-            HangCommands _command = new HangCommands(_hanger, -.7);
-            _command.execute();
-        }
-        else if(_joystick.getRawButton(CommandConstants.ButtonY))
-        {
-            HangCommands _command = new HangCommands(_hanger, .2);
-            _command.execute();
-        }
-        else
-        {
-            HangCommands _command = new HangCommands(_hanger, 0);
-            _command.execute();
-        }
+        // if(_joystick.getRawButton(CommandConstants.ButtonShoulderL))
+        // {
+        //     HangCommands _command = new HangCommands(_hanger, -.7);
+        //     _command.execute();
+        // }
+        // else if(_joystick.getRawButton(CommandConstants.ButtonShoulderR))
+        // {
+        //     HangCommands _command = new HangCommands(_hanger, .2);
+        //     _command.execute();
+        // }
+        // else
+        // {
+        //     HangCommands _command = new HangCommands(_hanger, 0);
+        //     _command.execute();
+        // }
     }
 }

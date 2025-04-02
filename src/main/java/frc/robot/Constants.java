@@ -29,8 +29,8 @@ public final class Constants {
     
     public static final int HANG_MOTOR_ID = 12;
 
-    public static final int PIVOT_ARM_MOTOR_ID = 13;
-    public static final int CLAW_ROT_MOTOR_ID = 14;
+    public static final int PIVOT_ARM_MOTOR_ID = 14;
+    public static final int CLAW_ROT_MOTOR_ID = 13;
 
     public static final int CLAW_MOTOR_TOP_ID = 15;
     public static final int CLAW_MOTOR_BOTTOM_ID = 16;

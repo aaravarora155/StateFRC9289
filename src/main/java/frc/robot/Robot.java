@@ -39,6 +39,9 @@ public class Robot extends TimedRobot
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    
+    RobotContainer.elevator.getEncoder1().setPosition(0);
+    RobotContainer.elevator.getEncoder2().setPosition(0);
   }
 
   /**
@@ -64,7 +67,9 @@ public class Robot extends TimedRobot
   }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
@@ -95,7 +100,8 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     }
     
-    // RobotContainer.arm.getEncoder().setPosition(0);
+    RobotContainer.elevator.getEncoder1().setPosition(0);
+    RobotContainer.elevator.getEncoder2().setPosition(0);
     CommandScheduler.getInstance().run();
   }
 

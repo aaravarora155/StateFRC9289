@@ -22,7 +22,7 @@ public class ClawRot extends SubsystemBase {
         SparkMaxConfig config = new SparkMaxConfig();
         config
                 .inverted(false)
-                .idleMode(IdleMode.kBrake);
+                .idleMode(IdleMode.kCoast);
         config.encoder
                 .positionConversionFactor(1000)
                 .velocityConversionFactor(1000);

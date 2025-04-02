@@ -22,9 +22,7 @@ public class ElevatorCommands extends Command {
         //Move Elevator
         elevatorMotors.move(heightInMeters);
     }
-
-    @Override
-    public void end(boolean interrupted) {
+    public void stop() {
         //Stop Elevator
         elevatorMotors.stop();
     }

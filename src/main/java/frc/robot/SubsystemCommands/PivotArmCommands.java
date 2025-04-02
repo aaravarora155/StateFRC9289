@@ -18,16 +18,4 @@ public class PivotArmCommands extends Command {
      public void execute() {
           pivotArm.move(power);
      }
-
-     public void executeLeft() {
-          while (pivotArm.getEncoder().getPosition() < 45) {
-               pivotArm.move(power);
-          }
-     }
-
-     public void executeRight() {
-          while (pivotArm.getEncoder().getPosition() > 0) {
-               pivotArm.move(-power);
-          }
-     }
 }

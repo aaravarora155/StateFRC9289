@@ -28,7 +28,7 @@ public class Elevator extends SubsystemBase {
         SparkMaxConfig config = new SparkMaxConfig();
         config
             .inverted(true)
-            .idleMode(IdleMode.kBrake);
+            .idleMode(IdleMode.kCoast);
         config.encoder
             .positionConversionFactor(1000)
             .velocityConversionFactor(1000);
@@ -38,22 +38,19 @@ public class Elevator extends SubsystemBase {
             
         motor_1.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         motor_2.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+        motor_1.getEncoder().setPosition(0);
+        motor_2.getEncoder().setPosition(0);
     }
 
-    public void move(double heightInMeters) {
-        // Convert height in meters to encoder units
-        double targetPosition = heightInMeters * 1000; // Assuming positionConversionFactor = 1000 (meters to encoder units)
-    
-        // Calculate the error in encoder units
-        double error = targetPosition - motor_1.getEncoder().getPosition();
-    
-        // Calculate motor output using proportional control
-        double output = Math.max(-DAMPENING, Math.min(DAMPENING, error * 1.0)); // kP = 1.0
-    
-        // Set motor outputs
-        motor_1.set(-output);
-        motor_2.set(output);
-        currentHeight = heightInMeters;
+    public void move(double move) {
+        // Convert height in meters to encoder
+        motor_1.set(move);
+        motor_2.set(-move);
+        SmartDashboard.putNumber("Elevator Motor 1 Power", motor_1.get());
+        SmartDashboard.putNumber("Elevator Motor 2 Power", motor_2.get());
+        SmartDashboard.putNumber("Elevator Motor 1 Position", motor_1.getEncoder().getPosition());
+        SmartDashboard.putNumber("Elevator Motor 2 Position", motor_2.getEncoder().getPosition() * -1);
     }
 
     public void stop(){
@@ -61,13 +58,19 @@ public class Elevator extends SubsystemBase {
         motor_2.set(0);
     }
 
+    public RelativeEncoder getEncoder1(){
+        return motor_1.getEncoder();
+    }
+    public RelativeEncoder getEncoder2(){
+        return motor_2.getEncoder();
+    }
     @Override
     public void periodic(){
         SmartDashboard.putNumber("Elevator Height", currentHeight);
         SmartDashboard.putNumber("Elevator Motor 1 Power", motor_1.get());
         SmartDashboard.putNumber("Elevator Motor 2 Power", motor_2.get());
         SmartDashboard.putNumber("Elevator Motor 1 Position", motor_1.getEncoder().getPosition());
-        SmartDashboard.putNumber("Elevator Motor 2 Position", motor_2.getEncoder().getPosition());
+        SmartDashboard.putNumber("Elevator Motor 2 Position", motor_2.getEncoder().getPosition() * -1);
     }
 }
 //Created by Aditya-2204

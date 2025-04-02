@@ -18,10 +18,10 @@ public class ClawRotMethods extends Command {
     @Override
     public void execute() {
         if (_joystick.getRawButton(CommandConstants.ButtonShoulderL)) {
-            ClawRotCommands _command = new ClawRotCommands(_clawRot, .2);
+            ClawRotCommands _command = new ClawRotCommands(_clawRot, .1);
             _command.execute();
         } else if (_joystick.getRawButton(CommandConstants.ButtonShoulderR)) {
-            ClawRotCommands _command = new ClawRotCommands(_clawRot, -.2);
+            ClawRotCommands _command = new ClawRotCommands(_clawRot, -.1);
             _command.execute();
         } else {
             ClawRotCommands _command = new ClawRotCommands(_clawRot, 0);

@@ -21,15 +21,16 @@ public class PivotArmMethods extends Command {
     public void execute() {
         // Set speeds and directions based on button press
         if (_joystick.getPOV() == CommandConstants.PovLeft) {
-            PivotArmCommands _command = new PivotArmCommands(_pivotArm, -.5);
-            _command.executeLeft();
+            PivotArmCommands _command = new PivotArmCommands(_pivotArm, -.1);
+            _command.execute();
         } else if (_joystick.getPOV() == CommandConstants.PovRight) {
-            PivotArmCommands _command = new PivotArmCommands(_pivotArm, .5);
-            _command.executeRight();
+            PivotArmCommands _command = new PivotArmCommands(_pivotArm, .1);
+            _command.execute();
         } else {
             PivotArmCommands _command = new PivotArmCommands(_pivotArm, 0);
             _command.execute();
         }
+        
     }
 }
 // Wolfram121

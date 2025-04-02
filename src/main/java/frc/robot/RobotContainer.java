@@ -32,7 +32,10 @@ public class RobotContainer {
   public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
-  private Elevator elevator = new Elevator();
+  public static Elevator elevator = new Elevator();
+  public static PivotArm _armPivot = new PivotArm();
+  public static ClawRot _ClawRot = new ClawRot();
+  public static Claw _Claw = new Claw();
   //initializating commands to put up as choices
   //old code
   private final Command leftCommand = new LeftStartAuto();
@@ -40,14 +43,12 @@ public class RobotContainer {
   private final Command rightCommand = new RightStartAuto();
   private final Command nonSpeakerCommand = new NonSpeakerStartAuto();
 
-  private final ElevatorMethods elevatorMethods = new ElevatorMethods(elevator, driverController);
   SendableChooser<Command> m_chooser;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // configureBindings();
     CameraServer.startAutomaticCapture();
-    drivetrain.setDefaultCommand(new SwerveDriveOld());
     configureBindings();
      m_chooser = new SendableChooser<>();
 
@@ -76,7 +77,11 @@ public class RobotContainer {
     // Configure the trigger bindings
     resetHeading_Start.onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
     hang.setDefaultCommand(new HangMethods(hang, driverController));
-    elevator.setDefaultCommand(new ElevatorMethods(elevator, driverController));
+    // elevator.setDefaultCommand(new ElevatorMethods(elevator, driverController));
+    elevator.setDefaultCommand(new PresetMethods(elevator, driverController, _armPivot, _ClawRot, _Claw));
+    _ClawRot.setDefaultCommand(new ClawRotMethods(_ClawRot, driverController));
+    _armPivot.setDefaultCommand(new PivotArmMethods(_armPivot, driverController));
+    _Claw.setDefaultCommand(new ClawMethods(_Claw, driverController));
   }
 
   /**

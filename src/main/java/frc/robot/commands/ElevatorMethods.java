@@ -19,24 +19,60 @@ public class ElevatorMethods extends Command {
 
     @Override
     public void execute() {
-        if (Elevator.currentHeight == 0.0) { //To prevent crashes, if the current height displacement is only 0, then move the elevator
-            if(_joystick.getRawButton(CommandConstants.ButtonA)){ //L2
-                // Move Elevator Up
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.37);
-                _elevatorCommands.execute();
+            if(_joystick.getRawButton(CommandConstants.ButtonA)){
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1); // prev .8
+
+                // _elevatorCommands.execute();
+
+                if (_elevator.getEncoder1().getPosition() < 14000){
+                    _elevatorCommands.execute();
+                }   
+                else if (_elevator.getEncoder1().getPosition() > 18000){
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands.execute();
+                }
+                else{
+                    _elevatorCommands = new ElevatorCommands(_elevator, 0.02);
+                    _elevatorCommands.execute();
+                }
             }
-            else if(_joystick.getRawButton(CommandConstants.ButtonB)){ //L3
-                // Move Elevator Down
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.88);
-                _elevatorCommands.execute();
+            else if(_joystick.getRawButton(CommandConstants.ButtonB)){
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1); // prev .8
+
+                // _elevatorCommands.execute();
+
+                if (_elevator.getEncoder1().getPosition() < 55000){
+                    _elevatorCommands.execute();
+                }   
+                else if (_elevator.getEncoder1().getPosition() > 59000){
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands.execute();
+                }
+                else{
+                    _elevatorCommands = new ElevatorCommands(_elevator, 0.02);
+                    _elevatorCommands.execute();
+                }
             }
-        } else {
-            if(_joystick.getRawButton(CommandConstants.ButtonA)){ //L2
-                // Move Elevator Up
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, -Elevator.currentHeight); //move back down to 0.0 height displacement when A is pressed
-                _elevatorCommands.execute();
+            else if(_joystick.getRawButton(CommandConstants.ButtonY)){
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                if (_elevator.getEncoder1().getPosition() < 105000){
+                    _elevatorCommands.execute();
+                }
+                else{
+                    _elevatorCommands = new ElevatorCommands(_elevator, 0.02);
+                    _elevatorCommands.execute();
+                }
             }
-        }
+            else {
+                if (_elevator.getEncoder1().getPosition() > 5000 && !_joystick.getRawButton(CommandConstants.ButtonBack)){
+                    ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands.execute();
+                }
+                else{
+                    ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0);
+                    _elevatorCommands.execute();
+                }
+            }
     }
 }
 

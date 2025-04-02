@@ -25,19 +25,18 @@ public class Claw extends SubsystemBase {
         SparkMaxConfig config = new SparkMaxConfig();
         config
                 .inverted(false)
-                .idleMode(IdleMode.kBrake);
+                .idleMode(IdleMode.kCoast);
         config.encoder
                 .positionConversionFactor(1000)
                 .velocityConversionFactor(1000);
         config.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder);
+
         clawTop.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         clawBottom.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         this.clawTopEncoder = clawTop.getEncoder();
         this.clawBottomEncoder = clawBottom.getEncoder();
-        this.clawTopEncoder.setPosition(0);
-        this.clawBottomEncoder.setPosition(0);
     }
 
     public void move(double speed) {

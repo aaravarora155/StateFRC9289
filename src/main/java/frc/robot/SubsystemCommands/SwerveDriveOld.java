@@ -38,39 +38,39 @@ public class SwerveDriveOld extends Command {
     double turnSpeedOutput = turnSpeedInput;
 
     //D-pad control mapping
-    if (RobotContainer.driverController.getPOV() == CommandConstants.PovUp) {
-      drivetrain.swerveDrive(
-          0.5,
-          0,
-          0,
-          !fieldOriented,
-          new Translation2d(),
-          true);
-    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovRight) {
-      drivetrain.swerveDrive(
-          0,
-          0.5,
-          0,
-          !fieldOriented,
-          new Translation2d(),
-          true);
-    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovDown) {
-      drivetrain.swerveDrive(
-          -0.5,
-          0,
-          0,
-          !fieldOriented,
-          new Translation2d(),
-          true);
-    } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovLeft) {
-      drivetrain.swerveDrive(
-          0,
-          -0.5,
-          0,
-          !fieldOriented,
-          new Translation2d(),
-          true);
-    } else {
+    // if (RobotContainer.driverController.getPOV() == CommandConstants.PovUp) {
+    //   drivetrain.swerveDrive(
+    //       0.5,
+    //       0,
+    //       0,
+    //       !fieldOriented,
+    //       new Translation2d(),
+    //       true);
+    // } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovRight) {
+    //   drivetrain.swerveDrive(
+    //       0,
+    //       0.5,
+    //       0,
+    //       !fieldOriented,
+    //       new Translation2d(),
+    //       true);
+    // } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovDown) {
+    //   drivetrain.swerveDrive(
+    //       -0.5,
+    //       0,
+    //       0,
+    //       !fieldOriented,
+    //       new Translation2d(),
+    //       true);
+    // } else if (RobotContainer.driverController.getPOV() == CommandConstants.PovLeft) {
+    //   drivetrain.swerveDrive(
+    //       0,
+    //       -0.5,
+    //       0,
+    //       !fieldOriented,
+    //       new Translation2d(),
+    //       true);
+    // } else {
       //Regular field-centric moving mapped square scaled w/ respect to sign dw
       drivetrain.swerveDrive(
         frontSpeedInput,
@@ -79,7 +79,7 @@ public class SwerveDriveOld extends Command {
         fieldOriented,
         new Translation2d(),
         true);
-    }
+    
   }
 
   // Called once the command ends or is interrupted.
