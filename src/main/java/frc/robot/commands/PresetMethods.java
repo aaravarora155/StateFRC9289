@@ -41,14 +41,14 @@ public class PresetMethods extends Command {
                 SmartDashboard.putBoolean("Scoring Boolean Left is T, Right is F", scoringDirection);
             }
             if(_joystick.getRawButton(CommandConstants.ButtonA)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3);
 
                 //elevator position first
                 if (_elevator.getEncoder1().getPosition() < 13000){
                     _elevatorCommands.execute();
                 }   
                 else if (_elevator.getEncoder1().getPosition() > 17000){
-                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.3);
                     _elevatorCommands.execute();
                 }
                 else{
@@ -60,13 +60,13 @@ public class PresetMethods extends Command {
                 
             }
             else if(_joystick.getRawButton(CommandConstants.ButtonX)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3);
 
-                if (_elevator.getEncoder1().getPosition() < 20000){
+                if (_elevator.getEncoder1().getPosition() < 24000){
                     _elevatorCommands.execute();
                 }   
-                else if (_elevator.getEncoder1().getPosition() > 23000){
-                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                else if (_elevator.getEncoder1().getPosition() > 27000){
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.3);
                     _elevatorCommands.execute();
                 }
                 else{
@@ -75,13 +75,13 @@ public class PresetMethods extends Command {
                 }
             }
             else if(_joystick.getRawButton(CommandConstants.ButtonB)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3);
 
                 if (_elevator.getEncoder1().getPosition() < 54000){
                     _elevatorCommands.execute();
                 }   
                 else if (_elevator.getEncoder1().getPosition() > 58000){
-                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.3);
                     _elevatorCommands.execute();
                 }
                 else{
@@ -90,9 +90,9 @@ public class PresetMethods extends Command {
                 }
             }
             else if(_joystick.getRawButton(CommandConstants.ButtonY)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.5);
 
-                if (_elevator.getEncoder1().getPosition() < 99500){
+                if (_elevator.getEncoder1().getPosition() < 110000){
                     _elevatorCommands.execute();
                 }
                 else{
@@ -101,8 +101,8 @@ public class PresetMethods extends Command {
                 }
             }
             else {
-                if (_elevator.getEncoder1().getPosition() > 5000 && !_joystick.getRawButton(CommandConstants.ButtonBack)){
-                    ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                if (_elevator.getEncoder1().getPosition() > 4000 && !_joystick.getRawButton(CommandConstants.ButtonBack)){
+                    ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, -0.2);
                     _elevatorCommands.execute();
                 }
                 else{

@@ -8,7 +8,7 @@ public class NonSpeakerStartAuto extends SequentialCommandGroup{
     public NonSpeakerStartAuto()
     {
         addCommands(
-            new SwerveDriveCommands(.4, 0, 0).withTimeout(10),
+            new SwerveDriveCommands(.2, 0, 0).withTimeout(4),
             new SwerveDriveCommands(0, 0, 0)
         );
     }

@@ -20,7 +20,7 @@ public class ElevatorMethods extends Command {
     @Override
     public void execute() {
             if(_joystick.getRawButton(CommandConstants.ButtonA)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1); // prev .8
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3); // prev .8
 
                 // _elevatorCommands.execute();
 
@@ -28,7 +28,7 @@ public class ElevatorMethods extends Command {
                     _elevatorCommands.execute();
                 }   
                 else if (_elevator.getEncoder1().getPosition() > 18000){
-                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.3);
                     _elevatorCommands.execute();
                 }
                 else{
@@ -37,7 +37,7 @@ public class ElevatorMethods extends Command {
                 }
             }
             else if(_joystick.getRawButton(CommandConstants.ButtonB)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1); // prev .8
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3); // prev .8
 
                 // _elevatorCommands.execute();
 
@@ -45,7 +45,7 @@ public class ElevatorMethods extends Command {
                     _elevatorCommands.execute();
                 }   
                 else if (_elevator.getEncoder1().getPosition() > 59000){
-                    _elevatorCommands = new ElevatorCommands(_elevator, -0.1);
+                    _elevatorCommands = new ElevatorCommands(_elevator, -0.3);
                     _elevatorCommands.execute();
                 }
                 else{
@@ -54,7 +54,7 @@ public class ElevatorMethods extends Command {
                 }
             }
             else if(_joystick.getRawButton(CommandConstants.ButtonY)){
-                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.1);
+                ElevatorCommands _elevatorCommands = new ElevatorCommands(_elevator, 0.3);
                 if (_elevator.getEncoder1().getPosition() < 105000){
                     _elevatorCommands.execute();
                 }

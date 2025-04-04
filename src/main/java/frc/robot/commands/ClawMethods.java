@@ -23,7 +23,7 @@ public class ClawMethods extends Command {
         //Set speeds and directions based on button press
         if(_joystick.getRawAxis(Math.abs(CommandConstants.AxisLeftTrigger)) > 0)
         {
-            ClawCommands _command = new ClawCommands(_claw, .1);
+            ClawCommands _command = new ClawCommands(_claw, .2);
             _command.execute();
         }
         else if(Math.abs(_joystick.getRawAxis(CommandConstants.AxisRightTrigger)) > 0)

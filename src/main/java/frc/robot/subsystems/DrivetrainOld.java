@@ -147,7 +147,8 @@ public class DrivetrainOld extends SubsystemBase {
 
   public void swerveDrive(double frontSpeed, double sideSpeed, double turnSpeed, 
     boolean fieldOriented, Translation2d centerOfRotation, boolean deadband){ //Drive with rotational speed control w/ joystick
-    if(deadband){
+   
+      if(deadband){
       frontSpeed = Math.abs(frontSpeed) > 0.05 ? frontSpeed : 0;
       sideSpeed = Math.abs(sideSpeed) > 0.05 ? sideSpeed : 0;
       turnSpeed = Math.abs(turnSpeed) > 0.05 ? turnSpeed : 0;

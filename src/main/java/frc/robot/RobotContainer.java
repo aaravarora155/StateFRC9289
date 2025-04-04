@@ -29,6 +29,7 @@ public class RobotContainer {
   //Define Subsystems & Commands
   // private static final Chassis _chassis = Chassis.returnInstance();
   public static final Joystick driverController = new Joystick(0);
+  public static final Joystick opController = new Joystick(1);
   public static final JoystickButton resetHeading_Start = new JoystickButton(driverController, CommandConstants.ButtonRightStick);
   private static Hang hang = new Hang();
   private final DrivetrainOld drivetrain = DrivetrainOld.getInstance();
@@ -49,6 +50,7 @@ public class RobotContainer {
   public RobotContainer() {
     // configureBindings();
     CameraServer.startAutomaticCapture();
+    drivetrain.setDefaultCommand(new SwerveDriveOld());
     configureBindings();
      m_chooser = new SendableChooser<>();
 
@@ -77,11 +79,10 @@ public class RobotContainer {
     // Configure the trigger bindings
     resetHeading_Start.onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
     hang.setDefaultCommand(new HangMethods(hang, driverController));
-    // elevator.setDefaultCommand(new ElevatorMethods(elevator, driverController));
-    elevator.setDefaultCommand(new PresetMethods(elevator, driverController, _armPivot, _ClawRot, _Claw));
-    _ClawRot.setDefaultCommand(new ClawRotMethods(_ClawRot, driverController));
-    _armPivot.setDefaultCommand(new PivotArmMethods(_armPivot, driverController));
-    _Claw.setDefaultCommand(new ClawMethods(_Claw, driverController));
+    elevator.setDefaultCommand(new PresetMethods(elevator, opController, _armPivot, _ClawRot, _Claw));
+    _ClawRot.setDefaultCommand(new ClawRotMethods(_ClawRot, opController));
+    _armPivot.setDefaultCommand(new PivotArmMethods(_armPivot, opController));
+    _Claw.setDefaultCommand(new ClawMethods(_Claw, opController));
   }
 
   /**

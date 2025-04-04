@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClawRot;
 import frc.robot.SubsystemCommands.ClawRotCommands;
+import frc.robot.SubsystemCommands.PivotArmCommands;
 
 public class ClawRotMethods extends Command {
     ClawRot _clawRot;
@@ -17,15 +18,19 @@ public class ClawRotMethods extends Command {
 
     @Override
     public void execute() {
-        if (_joystick.getRawButton(CommandConstants.ButtonShoulderL)) {
-            ClawRotCommands _command = new ClawRotCommands(_clawRot, .1);
-            _command.execute();
-        } else if (_joystick.getRawButton(CommandConstants.ButtonShoulderR)) {
-            ClawRotCommands _command = new ClawRotCommands(_clawRot, -.1);
-            _command.execute();
-        } else {
-            ClawRotCommands _command = new ClawRotCommands(_clawRot, 0);
-            _command.execute();
+        if (_joystick.getPOV() == CommandConstants.PovLeft && _clawRot.getEncoder().getPosition() < 12000) {
+            ClawRotCommands _ClawRotCommands = new ClawRotCommands(_clawRot, .2);
+            _ClawRotCommands.execute();
+        } else if (_joystick.getPOV() == CommandConstants.PovRight && _clawRot.getEncoder().getPosition() > -300) {
+            ClawRotCommands _ClawRotCommands = new ClawRotCommands(_clawRot, -.2);
+            _ClawRotCommands.execute();
+        } else if (_joystick.getRawButton(CommandConstants.ButtonStart)) {
+            ClawRotCommands _ClawRotCommands = new ClawRotCommands(_clawRot, -.2);
+            _ClawRotCommands.execute();
+        } 
+        else {
+            ClawRotCommands _ClawRotCommands = new ClawRotCommands(_clawRot,0);
+            _ClawRotCommands.execute();
         }
     }
 }

@@ -18,17 +18,5 @@ public class ClawRotCommands extends Command {
      public void execute() {
           clawRot.move(power);
      }
-
-     // public void execute90() {
-     //      if (90 - clawRot.getEncoder().getPosition() < 270 - clawRot.getEncoder().getPosition()) {
-     //           while (clawRot.getEncoder().getPosition() < 90) {
-     //                clawRot.move(-power);
-     //           }
-     //      } else {
-     //           while (clawRot.getEncoder().getPosition() > 270) {
-     //                clawRot.move(power);
-     //           }
-     //      }
-     // }
 }
 // Wolfran121

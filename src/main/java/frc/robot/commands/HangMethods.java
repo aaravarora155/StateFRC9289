@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Hang;
 
 import frc.robot.SubsystemCommands.HangCommands;
+import frc.robot.SubsystemCommands.PivotArmCommands;
 
 
 public class HangMethods extends Command {
@@ -23,20 +24,17 @@ public class HangMethods extends Command {
     public void execute()
     {
         //Set speeds and directions based on button press
-        // if(_joystick.getRawButton(CommandConstants.ButtonShoulderL))
-        // {
-        //     HangCommands _command = new HangCommands(_hanger, -.7);
-        //     _command.execute();
-        // }
-        // else if(_joystick.getRawButton(CommandConstants.ButtonShoulderR))
-        // {
-        //     HangCommands _command = new HangCommands(_hanger, .2);
-        //     _command.execute();
-        // }
-        // else
-        // {
-        //     HangCommands _command = new HangCommands(_hanger, 0);
-        //     _command.execute();
-        // }
+        if (_joystick.getRawButton(CommandConstants.ButtonY)) {
+            
+            HangCommands _command = new HangCommands(_hanger, -.7);
+            _command.execute();
+        } else if (_joystick.getRawButton(CommandConstants.ButtonA)) {
+            
+            HangCommands _command = new HangCommands(_hanger, .4);
+            _command.execute();
+        } else {
+            HangCommands _command = new HangCommands(_hanger, 0);
+            _command.execute();
+        }
     }
 }
